@@ -1,0 +1,20 @@
+config:
+  target: 'http://localhost:8888'
+  phases:
+    - duration: 120
+      arrivalRate: 100
+scenarios:
+  - name: "A user looking at a property"
+    weight: 90
+    flow:
+      - get:
+          url: "/api/basicdetails/9000000"
+      - get:
+          url: "/api/thumb/photos/9000000"
+      - get:
+          url: "/api/full/photos/9000000"
+  - name: "A user posting a new property"
+    weight: 1
+    flow:
+      - post:
+          url: "/postdetails"
